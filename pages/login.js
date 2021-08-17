@@ -28,26 +28,28 @@ class Login extends Component {
         <title>Login - {siteTitle}</title>
       </Head>
 
-      <main className="auth">
-      <header className="auth-header">
-        <h2 className="mb-3 text-light">Login</h2>
-        {/*<p>Belum punya akun? <a href="auth-signup.html">Daftar</a>
-        </p>*/}
-      </header>
+      <div className="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content rounded-5 shadow">
+      <div className="modal-header p-5 pb-4 border-bottom-0">
+        <h2 className="fw-bold mb-0">Sign up for free</h2>
+      </div>
+
+      <div className="modal-body p-5 pt-0">
       
         <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
             //alert(JSON.stringify(values));
             API.PostLogin(values).then(res=>{
-                if (res.id === "1" ) {
+                if (res.status === true ) {
                     localStorage.setItem('isAdmin',JSON.stringify(res.data))
-                    toast.success("Login Berhasil", {position: "top-center"});
+                    toast.success(res.message, {position: "top-center"});
                     setTimeout(()=>{
                         Router.push('/admin')
                     },2000);
                 } else {
-                  toast.warn("Periksa kembali username dan password anda", {position: "top-center"}); 
+                  toast.error(res.message, {position: "top-center"}); 
                 }
             })
             setTimeout(() => {
@@ -86,13 +88,17 @@ class Login extends Component {
 
     )}
     </Formik>
+    </div>
+    </div>
+    </div>
+    </div>
     
     <div className="py-3">
     <Link href="/">
             <a>← Kembali ke home</a>
           </Link>
     </div>
-    </main>
+
 
     </Layout>
   );
