@@ -58,10 +58,10 @@ componentDidMount = () => {
     ))
     return(  
       <>   
-    <Navbar sticky="top" bg="light" className="shadow border-bottom py-2" expand="md" >
+    <Navbar sticky="top" bg="primary" variant="dark" className="shadow border-bottom py-3" expand="md" >
     <Container>
 
-      <Link href="/" passHref><Navbar.Brand>{ loading ?<><Skeleton width={180} height={25} /></>:<>{this.props.setting.company}</>}</Navbar.Brand></Link>
+      <Link href="/" passHref><Navbar.Brand className="fw-bold">{ loading ?<><Skeleton width={180} height={25} /></>:<>{this.props.setting.company}</>}</Navbar.Brand></Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="sub-menu-bar">
         <ul className="navbar-nav me-auto">
@@ -78,7 +78,7 @@ componentDidMount = () => {
         <SearchForm/>
         
         <Form inline>
-        <Link href="/login" passHref><Button variant="primary"><FaSignInAlt/> Login</Button></Link>
+        <Link href="/login" passHref><Button variant="outline-light"><FaSignInAlt/> Login</Button></Link>
         </Form>
         
       </Navbar.Collapse>

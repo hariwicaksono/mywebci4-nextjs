@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import API from '../libs/axios';
 import SearchResult from './searchResult';
 //import { NotificationManager } from 'react-notifications'
-import { Form, Button, Spinner } from 'react-bootstrap';
+import { Form, Button, Spinner, InputGroup  } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 //import Form from 'react-formal'
 //import * as yup from 'yup'
@@ -49,8 +49,8 @@ class SearchForm extends Component {
 
         return (
            
-                <Form className="d-flex me-3" onSubmit={this.handlerSubmit}>
-
+                <Form className="d-flex w-50 me-3" onSubmit={this.handlerSubmit}>
+                    <InputGroup>
                     <Form.Control type="text" name="query" placeholder="Search" onChange={this.handlerChange} required/>
             
                     <Button variant="light" type="submit">
@@ -61,7 +61,7 @@ class SearchForm extends Component {
                         :   
                     <><FaSearch size="1.2em" /></>}
                     </Button>
-
+                    </InputGroup>
                 {this.state.results.length > 0 && (
                 
                 <SearchResult data={this.state.results} />

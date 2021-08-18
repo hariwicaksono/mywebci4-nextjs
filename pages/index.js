@@ -44,15 +44,15 @@ class Index extends Component{
       })
 
       API.GetProduct().then(res => {
-          this.setState({
-            Products: res.data
-          })
+          setTimeout(() => this.setState({
+            Products: res.data,
+            loading: false
+          }), 200);
       })
 
       API.GetBlog().then(res => {
           this.setState({
             Posts: res.data,
-            loading: false
           })
       })
 
@@ -130,7 +130,7 @@ class Index extends Component{
             }
             </section>
 
-            <section id="blog" className="blog-section">
+            {/*<section id="blog" className="blog-section">
               <h1 className="mb-3 h2" data-aos="fade-down" data-aos-delay="70">Posting terbaru</h1>
               {
                 this.state.loading ?
@@ -140,7 +140,7 @@ class Index extends Component{
                 <Blog data={this.state.Posts} />
                 </>
               }
-            </section>
+            </section>*/}
           
           </Col>
         </Row>
