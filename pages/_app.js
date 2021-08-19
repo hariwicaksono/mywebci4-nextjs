@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import AOS from 'aos';
+import 'bootstrap/scss/bootstrap.scss';
+import "../styles/styles.scss"
 import 'aos/dist/aos.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/global.css';
 import 'spin.js/spin.css';
 import '@morteza-jamali/lineicons/WebFont/font-css/LineIcons.css';
 import 'react-toastify/dist/ReactToastify.css';

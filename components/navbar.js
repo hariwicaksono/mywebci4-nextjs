@@ -58,7 +58,7 @@ componentDidMount = () => {
     ))
     return(  
       <>   
-    <Navbar sticky="top" bg="primary" variant="dark" className="shadow border-bottom py-3" expand="md" >
+    <Navbar sticky="top" bg="primary" variant="dark" className="shadow py-3" expand="md" >
     <Container>
 
       <Link href="/" passHref><Navbar.Brand className="fw-bold">{ loading ?<><Skeleton width={180} height={25} /></>:<>{this.props.setting.company}</>}</Navbar.Brand></Link>
