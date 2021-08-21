@@ -49,7 +49,7 @@ class SearchForm extends Component {
 
         return (
            
-                <Form className="d-flex w-50 me-3" onSubmit={this.handlerSubmit}>
+                <Form className="d-flex w-25 me-3" onSubmit={this.handlerSubmit}>
                     <InputGroup>
                     <Form.Control type="text" name="query" placeholder="Search" onChange={this.handlerChange} required/>
             

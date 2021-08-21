@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import {isLogin, isAdmin} from '../../libs/utils';
 import Layout, {siteName, siteTitle} from '../../components/layout';
-import {Container, Row, Col, Card, Jumbotron} from 'react-bootstrap';
+import {Container, Row, Col, Card} from 'react-bootstrap';
 import API from '../../libs/axios';
 import Skeleton from 'react-loading-skeleton';
 
@@ -63,9 +63,9 @@ class Index extends Component{
       <>
        <Row>
          <Col>
-      <Jumbotron className="mb-3">
+     
         <h1 className="h3 fw-bold">Selamat Datang di Admin Panel</h1>
-      </Jumbotron>
+      
       </Col>
       </Row>
      <Row>

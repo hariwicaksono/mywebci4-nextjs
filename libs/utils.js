@@ -10,7 +10,7 @@ export const login = () => {
 
 export const logout = () => {
     (localStorage.removeItem(TOKEN_KEY1) || localStorage.removeItem(TOKEN_KEY2));
-    toast.warn("Berhasil keluar sistem", {position: "top-center"}); 
+    toast.success("Berhasil keluar sistem", {position: "top-center"}); 
     setTimeout(()=>{
         Router.reload();
       },4000);

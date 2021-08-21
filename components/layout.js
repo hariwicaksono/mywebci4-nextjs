@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Navbar from './navbar';
 import NavbarA from './navbarA';
 import Sidebar from './sidebar';
 import Footer from './footer';
@@ -28,6 +27,7 @@ class Layout extends Component {
   }
   
   componentDidMount = () => {
+
     if(localStorage.getItem('isAdmin')){
       //console.log('ADMIN')
       this.setState({
@@ -60,19 +60,11 @@ class Layout extends Component {
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content={siteTitle} />
-    <link rel="icon" type="image/x-icon" href={`${process.env.BASE_PATH}/favicon.ico`} />
+    <link rel="icon" type="image/x-icon" href={`./favicon.ico`} />
     </Head>
 
-    {admin ? 
-        <NavbarA toggleMenu={this.toggleMenu} setting={this.state.Pengaturan} />
-    :
-        <Navbar toggleMenu={this.toggleMenu} setting={this.state.Pengaturan} />
-    } 
-
- 
-
     <div className="wrapper">
-    {this.state.login == true && (
+    {admin && (
         <Sidebar showMenu={this.state.showMenu} />
     )} 
    

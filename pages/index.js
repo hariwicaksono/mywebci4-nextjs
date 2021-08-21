@@ -30,6 +30,11 @@ class Index extends Component{
   
 }
     componentDidMount() {
+      if (!localStorage.getItem('cartItem')) {
+        const array = '[]';
+        localStorage.setItem('cartItem',array);
+      }
+      
       API.GetSlideshow().then(res => {
         this.setState({
               Slideshows: res.data,  
@@ -71,7 +76,7 @@ class Index extends Component{
           <Container>
       {
         this.state.loading ?
-          <Skeleton height={400} />
+          <Skeleton height={300} />
         :
         <>
         <Slideshow data={this.state.Slideshows} data-aos="fade-down" /> 
@@ -85,7 +90,18 @@ class Index extends Component{
 
         <Row>
           <Col md="12">
-
+          <section>
+            <h3 className="mb-3">Semua Produk</h3>
+            {
+              this.state.loading ?
+              <Skeleton height={400} />
+              :
+              <>
+              
+                 <Product data={this.state.Products} totalCnt={this.props.totalCnt} data-aos="fade-down" data-aos-delay="70" />
+              </>
+            }
+            </section>
           <section className="my-4">
             <Row>
               <Col lg={7}>
@@ -116,19 +132,6 @@ class Index extends Component{
               </Col>
             </Row>
           </section>
-
-          <section>
-            <h3 className="mb-3 mt-3" data-aos="fade-down" data-aos-delay="70">Semua Produk</h3>
-            {
-              this.state.loading ?
-              <Skeleton height={400} />
-              :
-              <>
-              
-                 <Product data={this.state.Products} totalCnt={this.props.totalCnt} />
-              </>
-            }
-            </section>
 
             {/*<section id="blog" className="blog-section">
               <h1 className="mb-3 h2" data-aos="fade-down" data-aos-delay="70">Posting terbaru</h1>

@@ -1,8 +1,9 @@
 import React, {Component, useState} from 'react';
 import Link from '../libs/link';
-import { Collapse} from 'react-bootstrap';
-import {FaHome, FaFile, FaComment, FaUser, FaImages, FaFileAlt, FaWrench, FaSlidersH, FaSignOutAlt, FaKey} from 'react-icons/fa';
-import { logout, isLogin } from '../libs/utils';
+import Router from 'next/router';
+import { Collapse, Button} from 'react-bootstrap';
+import {FaHome, FaFile, FaComment, FaUser, FaImages, FaArrowCircleLeft,FaArrowCircleRight, FaFileAlt, FaWrench, FaSlidersH, FaSignOutAlt, FaKey} from 'react-icons/fa';
+import { logout, isLogin, isAdmin } from '../libs/utils';
 
 function SubMenu() {
     const [open1, setOpen1] = useState(false);
@@ -69,20 +70,34 @@ class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            login:false 
+            login:false ,
+            showMenu: true,
         }
+        this.toggleMenu = this.toggleMenu.bind(this)
+    }
+    toggleMenu = function() {
+      this.setState({ showMenu: !this.state.showMenu });
     }
     componentDidMount = () => {
-        
+      if (!isAdmin()) {
+        return( Router.push('/login') )
+      }
     }
 
     render() {
       
     return(
         <>
-        <nav id="sidebar" className={this.props.showMenu ? 'shadow' : 'shadow active' }>
+        
+        <nav id="sidebar" className={this.state.showMenu ? 'shadow active' : 'shadow ' }>
         <ul className="list-unstyled components">
         <SubMenu/>
+        <li>
+          <a onClick={this.toggleMenu} className="text-primary text-center">
+          {this.state.showMenu ?  <FaArrowCircleRight size="1.4rem"/> : <FaArrowCircleLeft size="1.4rem"/> }
+         
+        </a>
+          </li>
         </ul>
         </nav>
         </>

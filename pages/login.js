@@ -28,9 +28,9 @@ return (
       <title>Login - {siteTitle}</title>
     </Head>
 
-    <div className="modal modal-signin position-static d-block py-3" tabindex="-1" role="dialog" id="modalSignin">
+    <div className="modal modal-signin position-static d-block py-3" tabIndex="-1" role="dialog" id="modalSignin">
       <div className="modal-dialog" role="document">
-        <div className="modal-content rounded-5 shadow">
+        <div className="modal-content rounded-4 shadow">
           <div className="modal-header p-5 pb-3 border-bottom-0"><h2 className="fw-bold mb-0">Login</h2></div>
             <div className="modal-body p-5 pt-0 mb-0">
               <Formik

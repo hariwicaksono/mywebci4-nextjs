@@ -14,8 +14,9 @@ class Slideshow extends Component {
         const ListSlideshow = this.props.data.map((s, index) => (
             <Carousel.Item key={index} style={{ position: "relative" }} >
                 <img
-                className="rounded d-block w-100"
+                className="rounded-4 d-block w-100"
                 src={url+s.img_slide}
+                height="300"
                 alt={s.txt_slide}
                 />
             </Carousel.Item>

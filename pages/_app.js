@@ -8,18 +8,19 @@ import '@morteza-jamali/lineicons/WebFont/font-css/LineIcons.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import API from '../libs/axios';
-
+import Navbar from '../components/navbar';
+import NavbarA from '../components/navbarA';
+import {logout, isLogin, isAdmin} from '../libs/utils';
 
 class MyApp extends Component {
   constructor(props){
     super(props)
     this.state = {
-      Pengaturan: [],
-      cartCount: 0
+          Pengaturan: [],
+          cartCount: 0,
         }
+        
     }
-
- 
 
   componentDidMount = () => {
     AOS.init();
@@ -33,6 +34,7 @@ class MyApp extends Component {
           Pengaturan: res.data[0]
       })
     })
+    
   }
 
   render() {
@@ -44,6 +46,11 @@ class MyApp extends Component {
         }
     return (   
     <>
+
+
+    <Navbar setting={this.state.Pengaturan} cartCount={that.state.cartCount} />
+  
+
     <Component {...pageProps} setting={this.state.Pengaturan} totalCnt={cartCount} />
     <ToastContainer />
     </>

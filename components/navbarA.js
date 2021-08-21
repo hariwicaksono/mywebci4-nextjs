@@ -54,8 +54,7 @@ componentDidMount = () => {
            })
        })
            
-   }
-  else {
+  } else {
     setTimeout(() => this.setState({
           login: true,
           loading: false
