@@ -38,11 +38,17 @@ return (
                 onSubmit={(values, actions) => {
                 //alert(JSON.stringify(values));
                 API.PostLogin(values).then(res=>{
-                    if (res.status === true ) {
+                    if (res.id === 1 ) {
                         localStorage.setItem('isAdmin',JSON.stringify(res.data))
-                        toast.success(res.message, {position: "top-center"});
+                        toast.success(res.message, {position: "top-center"}); 
                         setTimeout(()=>{
                             Router.push('/admin')
+                        },2000)
+                    } else if (res.id === 2 ) {
+                        localStorage.setItem('isLogin',JSON.stringify(res.data))
+                        toast.success(res.message, {position: "top-center"});
+                        setTimeout(()=>{
+                            Router.push('/')
                         },2000);
                     } else {
                       toast.error(res.message, {position: "top-center"}); 
