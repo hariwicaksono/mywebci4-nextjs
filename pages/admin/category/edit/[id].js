@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import Layout, { siteTitle } from '../../../../components/layout';
-import API from '../../../../libs/axios';
+import API from '../../../../lib/axios';
 import {Container, Breadcrumb, Card, Spinner, Button, Form} from 'react-bootstrap';
 import { FaSave} from 'react-icons/fa';
 import {toast} from 'react-toastify';

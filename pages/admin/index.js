@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
-import {isLogin, isAdmin} from '../../libs/utils';
+import {isLogin, isAdmin} from '../../lib/utils';
 import Layout, {siteName, siteTitle} from '../../components/layout';
 import {Container, Row, Col, Card} from 'react-bootstrap';
-import API from '../../libs/axios';
+import API from '../../lib/axios';
 import Skeleton from 'react-loading-skeleton';
 
 class Index extends Component{

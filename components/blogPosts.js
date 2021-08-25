@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { Container, Badge, Row, Col, Card } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
-import { ImagesUrl } from '../libs/urls';
+import { ImagesUrl } from '../lib/urls';
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import parse from 'html-react-parser';
 

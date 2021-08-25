@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import {Redirect,Link} from 'react-router-dom'
-import API from '../libs/axios';
+import API from '../lib/axios';
 import SearchResult from './searchResult';
 //import { NotificationManager } from 'react-notifications'
 import { Form, Button, Spinner, InputGroup  } from 'react-bootstrap';

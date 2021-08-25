@@ -5,8 +5,8 @@ import NavbarA from './navbarA';
 import Sidebar from './sidebar';
 import Footer from './footer';
 import { Container } from 'react-bootstrap';
-import {isLogin, isAdmin} from '../libs/utils';
-import API from '../libs/axios';
+import {isLogin, isAdmin} from '../lib/utils';
+import API from '../lib/axios';
 
 export const siteName = 'Web App'
 export const siteTitle = 'Web App dengan CodeIgniter 4 & Next.js'

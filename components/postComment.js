@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Head from 'next/head';
 import Router from 'next/router';
 import Link from 'next/link';
-import API from '../libs/axios';
+import API from '../lib/axios';
 import {toast} from 'react-toastify';
 import {Container, Breadcrumb, Card, Row, Col, Spinner, Button, Form} from 'react-bootstrap';
 import { FaSave} from 'react-icons/fa';

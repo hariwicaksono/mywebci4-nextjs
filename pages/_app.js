@@ -7,10 +7,10 @@ import 'spin.js/spin.css';
 import '@morteza-jamali/lineicons/WebFont/font-css/LineIcons.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import API from '../libs/axios';
+import API from '../lib/axios';
 import Navbar from '../components/navbar';
 import NavbarA from '../components/navbarA';
-import {logout, isLogin, isAdmin} from '../libs/utils';
+import {logout, isLogin, isAdmin} from '../lib/utils';
 
 class MyApp extends Component {
   constructor(props){

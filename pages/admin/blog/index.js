@@ -2,10 +2,10 @@ import React, { Component, useState, useMemo } from 'react'
 import Head from 'next/head';
 import Router from 'next/router';
 import Link from 'next/link';
-import {isLogin, isAdmin} from '../../../libs/utils';
-import {ImagesUrl} from '../../../libs/urls';
+import {isLogin, isAdmin} from '../../../lib/utils';
+import {ImagesUrl} from '../../../lib/urls';
 import Layout, {siteName, siteTitle} from '../../../components/layout';
-import API from '../../../libs/axios';
+import API from '../../../lib/axios';
 import {toast} from 'react-toastify';
 import {Container, Breadcrumb, Card, Row, Col, Spinner, Button, Form} from 'react-bootstrap';
 import { FaTrash, FaPencilAlt, FaUpload} from 'react-icons/fa';
