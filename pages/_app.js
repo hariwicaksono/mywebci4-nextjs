@@ -31,7 +31,7 @@ class MyApp extends Component {
 
     API.GetSetting().then(res=>{
       this.setState({
-          Pengaturan: res.data[0]
+          Pengaturan: res.data
       })
     })
     

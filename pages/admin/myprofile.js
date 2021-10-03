@@ -12,8 +12,8 @@ import Skeleton from 'react-loading-skeleton';
 import {FaSave} from 'react-icons/fa';
  
 const validationSchema = yup.object({
-    name: yup.string().required('Field harus diisi'),
-    email: yup.string().required('Field harus diisi')
+    //name: yup.string().required('Field harus diisi'),
+    //email: yup.string().required('Field harus diisi')
   }); 
 class MyProfile extends Component {
     constructor(props) {
@@ -30,14 +30,15 @@ class MyProfile extends Component {
     componentDidMount = () => {
 
     const data = JSON.parse(localStorage.getItem('isAdmin'))
-    const id = data[0].email
+    const id = data.data.id
     API.GetUserId(id).then(res=>{
+        var data = res.data
         setTimeout(() => this.setState({
-            id: res.data[0].id,
-            name: res.data[0].name,
-            email: res.data[0].email,
+            id: data.id,
+            name: data.name,
+            email: data.email,
             loading: false
-          }), 100);
+          }));
     })
     }            
 
@@ -75,10 +76,10 @@ class MyProfile extends Component {
                                 
                                 API.PutUser(values).then(res=>{
                                     //console.log(res)
-                                    if (res.status == '200' ) {
-                                        toast.success("Data berhasil disimpan", {position: "top-center"}); 
+                                    if (res.status == true ) {
+                                        toast.success(res.message, {position: "top-center"}); 
                                     } else {
-                                        toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                        toast.warn(res.message, {position: "top-center"}); 
                                     }
                                     
                                 }).catch(err => {
@@ -90,8 +91,6 @@ class MyProfile extends Component {
                                 actions.setSubmitting(false);
                                 }, 1000);
                             }}
-                            validationSchema={validationSchema}
-                            enableReinitialize={true}
                             >
                             {({
                                 handleSubmit,
@@ -106,7 +105,7 @@ class MyProfile extends Component {
                                 
                             <Form.Group className="mb-3">
                                 <Form.Label>Nama Lengkap*</Form.Label>
-                                <Form.Control type="text" name="name" placeholder="" className="form-control" onChange={handleChange} onBlur={handleBlur} value={values.name} isInvalid={!!errors.name && touched.company} />
+                                <Form.Control type="text" name="name" placeholder="" className="form-control" onChange={handleChange} onBlur={handleBlur} value={values.name} isInvalid={!!errors.name && touched.name} />
                                 {errors.name && touched.name && <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>}
                             </Form.Group>
 

@@ -7,7 +7,7 @@ import {ImagesUrl} from '../lib/urls';
 import {Container, Alert, Card, Row, Col, Spinner, Button, Form} from 'react-bootstrap';
 import Slideshow from '../components/slideshow';
 import Loader from 'react-loader';
-import Blog from '../components/blogPosts';
+import Blog from '../components/blogPost';
 import Product from '../components/products';
 import {FaExclamationTriangle, FaCartPlus} from 'react-icons/fa';
 import Skeleton from 'react-loading-skeleton';
@@ -42,9 +42,9 @@ class Index extends Component{
       })
       API.GetSetting().then(res=>{
        this.setState({
-            landing_intro: res.data[0].landing_intro,
-            landing_link: res.data[0].landing_link,
-            landing_img: res.data[0].landing_img,
+            landing_intro: res.data.landing_intro,
+            landing_link: res.data.landing_link,
+            landing_img: res.data.landing_img,
           })
       })
 

@@ -6,7 +6,7 @@ import { ImagesUrl } from '../lib/urls';
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import parse from 'html-react-parser';
 
-class blogPosts extends Component {
+class blogPost extends Component {
   
     constructor(props){
         super(props)
@@ -96,4 +96,4 @@ class blogPosts extends Component {
     }
 }
 
-export default blogPosts;
+export default blogPost;

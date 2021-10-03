@@ -11,17 +11,28 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
-username: yup.string().required('Username harus diisi'),
-password: yup.string().required('Password harus diisi')
+email: yup.string().email(),
+password: yup.string()
 }); 
 
 class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      formLoginKeys:[],
+      invalid: false,
+        emailInvalid: '',
+        passwordInvalid: '',
+    }
+  
+}
 componentDidMount = () => {
-  if (localStorage.getItem('isLogin')) {
-    return( Router.push('/dashboard') )
+  if (localStorage.getItem('isAdmin')) {
+    return( Router.push('/admin') )
   }
 }
 render() {
+  const { invalid, emailInvalid, passwordInvalid } = this.state;
 return (
   <Layout login>
     <Head>
@@ -34,24 +45,29 @@ return (
           <div className="modal-header p-5 pb-3 border-bottom-0"><h2 className="fw-bold mb-0">Login</h2></div>
             <div className="modal-body p-5 pt-0 mb-0">
               <Formik
-                initialValues={{ username: '', password: '' }}
+                initialValues={{ email: '', password: '' }}
                 onSubmit={(values, actions) => {
                 //alert(JSON.stringify(values));
                 API.PostLogin(values).then(res=>{
-                    if (res.id === 1 ) {
-                        localStorage.setItem('isAdmin',JSON.stringify(res.data))
-                        toast.success(res.message, {position: "top-center"}); 
-                        setTimeout(()=>{
-                            Router.push('/admin')
-                        },2000)
-                    } else if (res.id === 2 ) {
-                        localStorage.setItem('isLogin',JSON.stringify(res.data))
-                        toast.success(res.message, {position: "top-center"});
-                        setTimeout(()=>{
-                            Router.push('/')
-                        },2000);
+                    var data = res.data;
+                  //console.log(data)
+                    if (data.status == true) {
+                      if (data.isadmin == true ) {
+                          localStorage.setItem('isAdmin',JSON.stringify(data))
+                          toast.success(data.message, {position: "top-center"}); 
+                          setTimeout(() => window.location.reload(), 1000);
+                      } else {
+                          localStorage.setItem('isLogin',JSON.stringify(data))
+                          toast.success(data.message, {position: "top-center"});
+                          setTimeout(() => window.location.reload(), 1000);
+                      }
                     } else {
-                      toast.error(res.message, {position: "top-center"}); 
+                      this.setState({
+                        invalid: true,
+                        emailInvalid: data.email,
+                        passwordInvalid: data.password,
+                      })
+                      //toast.error(data.message, {position: "top-center"}); 
                     }
                 })
                 setTimeout(() => {
@@ -63,12 +79,12 @@ return (
                 {({handleSubmit,handleChange,handleBlur,values,touched,errors,isSubmitting}) => (
                 <Form noValidate onSubmit={handleSubmit}>
                     <FloatingLabel controlId="floatingInput" label="Email address" className="mb-3">
-                        <Form.Control type="text" name="username" placeholder="your@email.com" className="form-control" onChange={handleChange} onBlur={handleBlur} value={values.username} isInvalid={!!errors.username && touched.username} />
-                        {errors.username && touched.username && <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>}
+                        <Form.Control type="text" name="email" placeholder="your@email.com" className="form-control" onChange={handleChange} onBlur={handleBlur} value={values.email} isInvalid={!!invalid && !!emailInvalid} />
+                        {invalid && <Form.Control.Feedback type="invalid">{emailInvalid}</Form.Control.Feedback>}
                     </FloatingLabel>
                     <FloatingLabel controlId="floatingPassword" label="Password" className="mb-3">
-                        <Form.Control type="password" name="password" placeholder="Password" className="form-control" onChange={handleChange} onBlur={handleBlur} isInvalid={!!errors.password && touched.password} />
-                        {errors.password && touched.password && <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>}
+                        <Form.Control type="password" name="password" placeholder="Password" className="form-control" onChange={handleChange} onBlur={handleBlur} isInvalid={!!invalid && !!passwordInvalid} />
+                        {invalid && <Form.Control.Feedback type="invalid">{passwordInvalid}</Form.Control.Feedback>}
                     </FloatingLabel>
                     <div className="d-grid">
                     <Button variant="primary" type="submit" disabled={isSubmitting} className="mb-3">

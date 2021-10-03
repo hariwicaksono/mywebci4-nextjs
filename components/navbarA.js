@@ -36,19 +36,19 @@ componentDidMount = () => {
   }
   API.GetSetting().then(res=>{
     this.setState({
-        theme: res.data[0].theme
+        theme: res.data.theme
       })
 })
 
  if (isAdmin()) {
        const data = JSON.parse(localStorage.getItem('isAdmin'))
-       const id = data[0].email
+       const id = data.email
        console.log(id)
        API.GetUserId(id).then(res=>{
            this.setState({
-            id: res.data[0].id,
-               name: res.data[0].name,
-               email: res.data[0].email,
+            id: res.data.id,
+               name: res.data.name,
+               email: res.data.email,
                loading: false,
                admin: true
            })

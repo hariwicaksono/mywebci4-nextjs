@@ -78,16 +78,17 @@ componentDidMount = () => {
   if(localStorage.getItem('isAdmin')){
     console.log('ADMIN')
     const data = JSON.parse(localStorage.getItem('isAdmin'))
-    const id = data[0].email
+    const id = data.data.id
     console.log(id)
         API.GetUserId(id).then(res=>{
+          var data = res.data
           setTimeout(() => this.setState({
-            id: res.data[0].id,
-            name: res.data[0].name,
-            email: res.data[0].email,
+            id: data.id,
+            name: data.name,
+            email: data.email,
             loading: false,
             login: true
-        }), 100);
+        }));
     })
   } else if(localStorage.getItem('isLogin')){
     console.log('USER')
@@ -110,7 +111,7 @@ componentDidMount = () => {
 
   API.GetSetting().then(res=>{
       this.setState({
-        theme: res.data[0].theme,
+        theme: res.data.theme,
       })
 })
 
