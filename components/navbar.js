@@ -11,47 +11,6 @@ import {FaBars, FaSignInAlt, FaSignOutAlt, FaKey,FaUser,FaShoppingCart, FaDataba
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'react-toastify';
 
-function Cart(props) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const removeCart = () => {
-    localStorage.setItem('cartItem', JSON.stringify([]));
-    toast.success("Keranjang dikosongkan", {position: "top-center"});
-    setTimeout(()=>{
-      Router.reload();
-    },4000);
-  }
-
-  return (
-    <>
-      <Button onClick={handleShow} className="btn text-light" >
-      <FaShoppingCart size="1.25em" /> {props.cartCount ? <Badge pill bg="danger">{props.cartCount}</Badge> : ""}
-      </Button>
-
-      <Modal show={show} size="lg" onHide={handleClose} animation={false} backdrop="static" keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Keranjang Belanja</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {props.cartCount ? <span className="text-danger">{props.cartCount}</span> : ""}
-          <Button variant="danger" onClick={removeCart}>Hapus</Button>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="light" onClick={handleClose}>
-            Tutup
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Pesan
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
-
 class MyNavbar extends Component{
   constructor(props) {
     super(props)
@@ -142,8 +101,7 @@ componentDidMount = () => {
 
         {this.state.login === false ?
     <>
-    <Cart cartCount={this.props.cartCount} />
-     <Link href="/login" passHref><Button className="btn text-light"><FaUser size="1.25em" /></Button></Link>
+     <Link href="/login" passHref><Button className="btn text-light"><FaSignInAlt size="1.25em" /> Login</Button></Link>
     </>
     :
     <>

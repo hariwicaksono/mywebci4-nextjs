@@ -14,7 +14,6 @@ class Index extends Component{
         JumlahBlog: '',
         JumlahKategori: '',
         JumlahKomentar: '',
-        JumlahProduk: '',
         loading: true
     }
 }
@@ -64,30 +63,24 @@ class Index extends Component{
        <Row>
          <Col>
      
-        <h1 className="h3 fw-bold">Selamat Datang di Admin Panel</h1>
+        <h1 className="h3 fw-bold mb-3">Selamat Datang di Admin Panel</h1>
       
       </Col>
       </Row>
      <Row>
-        <Col md={3}>
-          <Card bg="light" text="dark" body>
-                <h5>Jumlah Produk</h5>
-                <h1>{this.state.JumlahProduk}</h1>
-              </Card>
-        </Col>
-        <Col md={3}>
+        <Col md={4}>
         <Card bg="light" text="dark" body>
               <h5>Jumlah Blog Post</h5>
               <h1>{this.state.JumlahBlog}</h1>
             </Card>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
         <Card bg="light" text="dark" body>
               <h5>Jumlah Kategori</h5>
               <h1>{this.state.JumlahKategori}</h1>
             </Card>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
         <Card bg="light" text="dark" body>
               <h5>Jumlah Komentar</h5>
               <h1>{this.state.JumlahKomentar}</h1>

@@ -81,18 +81,19 @@ class Comment extends Component {
                                 //alert(JSON.stringify(values));
                                 API.PutComment({id: values.id, active: values.active ? 'true':''}).then(res=>{
                                   //console.log(res)
-                                  if (res.status == '200' ) {
-                                    toast.success("Data berhasil disimpan", {position: "top-center"});
+                                  var data = res.data;
+                                  if (data.status == true) {
+                                    toast.success(data.message, {position: "top-center"});
                                     setTimeout(() => { 
                                       this.reloadData();
                                     }, 4000);
                                   } else {
-                                    toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                    toast.warn(data.message, {position: "top-center"}); 
                                 }
                                    
                               }).catch(err => {
                                   console.log(err.response)
-                                  toast.warn("Tidak ada data yang diubah", {position: "top-center"});
+                                  toast.warn(data.message, {position: "top-center"});
                               })
                                 
                                 setTimeout(() => {

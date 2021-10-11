@@ -49,17 +49,18 @@ class Index extends Component{
       })
 
       API.GetProduct().then(res => {
-          setTimeout(() => this.setState({
+          this.setState({
             Products: res.data,
-            loading: false
-          }), 200);
+            
+          }) 
       })
 
       API.GetBlog().then(res => {
-          this.setState({
+        setTimeout(() => this.setState({
             Posts: res.data,
-          })
-      })
+            loading: false
+          }) );
+      }) 
 
       
   } 
@@ -90,18 +91,7 @@ class Index extends Component{
 
         <Row>
           <Col md="12">
-          <section>
-            <h3 className="mb-3">Semua Produk</h3>
-            {
-              this.state.loading ?
-              <Skeleton height={400} />
-              :
-              <>
-              
-                 <Product data={this.state.Products} totalCnt={this.props.totalCnt} data-aos="fade-down" data-aos-delay="70" />
-              </>
-            }
-            </section>
+
           <section className="my-4">
             <Row>
               <Col lg={7}>
@@ -133,7 +123,7 @@ class Index extends Component{
             </Row>
           </section>
 
-            {/*<section id="blog" className="blog-section">
+            <section id="blog" className="blog-section">
               <h1 className="mb-3 h2" data-aos="fade-down" data-aos-delay="70">Posting terbaru</h1>
               {
                 this.state.loading ?
@@ -143,7 +133,7 @@ class Index extends Component{
                 <Blog data={this.state.Posts} />
                 </>
               }
-            </section>*/}
+            </section>
           
           </Col>
         </Row>
