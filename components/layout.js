@@ -45,8 +45,9 @@ class Layout extends Component {
     }
 
     API.GetSetting().then(res=>{
+      var data = res.data;
       this.setState({
-          Pengaturan: res.data
+          Pengaturan: data.data
       })
     })
   }

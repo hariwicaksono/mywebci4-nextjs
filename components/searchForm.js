@@ -36,10 +36,11 @@ class SearchForm extends Component {
     const query = this.state.query;
     API.SearchBlog(query).then((res) => {
       //console.log(res)
+      var data = res.data
       setTimeout(
         () =>
           this.setState({
-            results: res.data,
+            results: data.data,
             loading: false,
           }),
         100

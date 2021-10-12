@@ -32,9 +32,10 @@ class Password extends Component {
     componentDidMount = () => {
 
     const datas = JSON.parse(localStorage.getItem('isAdmin'))
-    const id = datas[0].email
+    const id = datas.data.email
     API.GetUserId(id).then(res=>{
         //console.log(res)
+        var data = res.data;
         setTimeout(() => this.setState({
             id: id,
             loading: false

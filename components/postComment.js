@@ -60,7 +60,8 @@ class FormComment extends Component {
                                 
                                 API.PostComment(values).then(res=>{
                                     //console.log(res)
-                                    if (res.status == '201' ) {
+                                    var data = res.data
+                                    if (data.status == true ) {
                                         toast.success("Komentar berhasil disimpan, menunggu persetujuan admin untuk ditampilkan", {position: "top-center"}); 
                                         setTimeout(() => { 
                                             Router.reload();
