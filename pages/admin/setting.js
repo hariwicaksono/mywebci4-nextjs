@@ -6,7 +6,7 @@ import { ImagesUrl } from "../../lib/urls";
 import Layout, { siteName, siteTitle } from "../../components/layout";
 import API from "../../lib/axios";
 import { toast } from "react-toastify";
-import { Container, Breadcrumb, Card, Row, Col, Spinner, Button, Form, FloatingLabel, Tabs, Tab } from "react-bootstrap";
+import { Container, Breadcrumb, Card, Row, Col, Spinner, Button, Form, FloatingLabel, Tabs, Tab, Nav } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import Skeleton from "react-loading-skeleton";
@@ -95,20 +95,7 @@ class Setting extends Component {
                 ) : (
                   <>
                     <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" variant="pills" className="mb-3 nav-fill">
-                      <Row>
-                        <Col sm={3}>
-                          <Nav variant="pills" className="flex-column">
-                            <Nav.Item>
-                              <Nav.Link eventKey="first">Home</Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                              <Nav.Link eventKey="second">Landing Page</Nav.Link>
-                            </Nav.Item>
-                          </Nav>
-                        </Col>
-                        <Col sm={9}>
-                          <Tab.Content>
-                            <Tab.Pane eventKey="first">
+                     <Tab eventKey="home" title="Home">
                               <Formik
                                 initialValues={{
                                   id: this.state.id,
@@ -235,8 +222,10 @@ class Setting extends Component {
                                   </Form>
                                 )}
                               </Formik>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="second">
+
+ </Tab>
+
+                                            <Tab eventKey="landing" title="Landing Page">
                               <Formik
                                 initialValues={{
                                   id: this.state.id,
@@ -368,10 +357,8 @@ class Setting extends Component {
                                   </Form>
                                 )}
                               </Formik>
-                            </Tab.Pane>
-                          </Tab.Content>
-                        </Col>
-                      </Row>
+                         
+ </Tab>
                     </Tabs>
                   </>
                 )}
