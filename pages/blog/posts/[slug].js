@@ -40,18 +40,19 @@ class Detail extends Component {
       post_id: id,
     });
     API.GetBlogId(id).then((res) => {
-      //console.log(res)
+      //console.log(res);
+      var data = res.data;
       setTimeout(
         () =>
           this.setState({
-            id: res.data[0].id,
-            title: res.data[0].title,
-            slug: res.data[0].slug,
-            body: res.data[0].body,
-            image: res.data[0].post_image,
-            date: res.data[0].created_at,
-            category: res.data[0].category,
-            user: res.data[0].user,
+            id: data.data[0].id,
+            title: data.data[0].title,
+            slug: data.data[0].slug,
+            body: data.data[0].body,
+            image: data.data[0].post_image,
+            date: data.data[0].created_at,
+            category: data.data[0].category,
+            user: data.data[0].user,
             loading: false,
           }),
         100
@@ -59,19 +60,21 @@ class Detail extends Component {
     });
     API.GetCommentId(id)
       .then((res) => {
-        if (res.data.length > 0) {
+        var data = res.data;
+        if (data.length > 0) {
           this.setState({
-            Comments: res.data,
+            Comments: data.data,
           });
         } else {
           this.setState({
-            error: "No Data Found",
+            error: data.message,
           });
         }
         API.GetCategory().then((res) => {
-          console.log(res);
+          //console.log(res);
+          var data = res.data;
           this.setState({
-            allCategory: res.data,
+            allCategory: data.data,
           });
         });
       })
