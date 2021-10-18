@@ -45,15 +45,16 @@ static async getInitialProps ({ query }) {
   componentDidMount = () => {
     const id = this.props.id
         API.GetBlogId(id).then(res=>{
-          console.log(res)
+          //console.log(res)
+          var data = res.data;
           setTimeout(() => this.setState({
-                id: res.data[0].id,
-                title : res.data[0].title,
-                summary: res.data[0].summary,
-                body: res.data[0].body,
-                image: res.data[0].post_image,
-                date: res.data[0].date,
-                time: res.data[0].time,
+                id: data.data[0].id,
+                title : data.data[0].title,
+                summary: data.data[0].summary,
+                body: data.data[0].body,
+                image: data.data[0].post_image,
+                date: data.data[0].date,
+                time: data.data[0].time,
                 loading: false
             }), 100);
         })
@@ -97,18 +98,19 @@ static async getInitialProps ({ query }) {
                                 
                                     API.PutBlog(values).then(res=>{
                                       //console.log(res)
-                                      if (res.status == '200' ) {
-                                        toast.success("Data berhasil disimpan", {position: "top-center"}); 
+                                      var data = res.data;
+                                      if (data.status == true ) {
+                                        toast.success(data.message, {position: "top-center"}); 
                                           setTimeout(() => { 
                                             Router.push('/admin/blog');
                                         }, 4000);
                                       } else {
-                                        toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                        toast.warn(data.message, {position: "top-center"}); 
                                     }
                                        
                                   }).catch(err => {
                                       console.log(err.response)
-                                      toast.warn("Tidak ada data yang diubah", {position: "top-center"}); 
+                                      toast.warn(data.message, {position: "top-center"}); 
                                   })
                                 
                                 setTimeout(() => {

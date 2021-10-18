@@ -7,7 +7,7 @@ import Layout, {siteName, siteTitle} from '../../../components/layout';
 import API from '../../../lib/axios';
 import {toast} from 'react-toastify';
 import {Container, Breadcrumb, Card, Row, Col, Spinner, Button, Form} from 'react-bootstrap'
-import { FaSave} from 'react-icons/fa';
+import { FaSave, FaThermometerQuarter} from 'react-icons/fa';
 import Skeleton from 'react-loading-skeleton';
 //import moment from 'moment'
 //import 'moment/locale/id'
@@ -30,7 +30,7 @@ class Create extends Component {
  
     componentDidMount = () => {
         const datas = JSON.parse(localStorage.getItem('isAdmin'))
-        const id = datas[0].id
+        const id = datas.data.id
         this.setState({
             id: id,
             loading: false
@@ -73,17 +73,18 @@ class Create extends Component {
                                 
                                 API.PostCategory(values).then(res=>{
                                     //console.log(res)
-                                    if (res.status == '201' ) {
-                                        toast.success("Data berhasil disimpan", {position: "top-center"}); 
+                                    var data = res.data;
+                                    if (data.status == true ) {
+                                        toast.success(data.message, {position: "top-center"}); 
                                         setTimeout(() => { 
                                             Router.push('/admin/category');
                                         }, 4000);
                                     } else {
-                                        toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                        toast.warn(data.message, {position: "top-center"}); 
                                     }
                                 }).catch(err => {
                                     console.log(err.response)
-                                    toast.warn("Tidak ada data yang diubah", {position: "top-center"}); 
+                                    toast.warn(data.message, {position: "top-center"}); 
                                 })
                                 
                                 setTimeout(() => {

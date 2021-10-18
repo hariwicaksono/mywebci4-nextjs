@@ -121,21 +121,23 @@ class Create extends Component {
                                     }
                                   ).then(res=>{
                                     //console.log(res)
-                                    if (res.status == '201' ) {
-                                        toast.success("Data berhasil disimpan", {position: "top-center"}); 
+                                    var data = res.data;
+                                    if (data.status == true ) {
+                                        toast.success(data.message, {position: "top-center"}); 
                                         setTimeout(() => { 
                                             Router.push('/admin/blog');
                                         }, 4000);
                                     } else {
-                                        toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                        toast.warn(data.message, {position: "top-center"}); 
                                     }
                                 }).catch(err => {
                                     console.log(err.response)
-                                    toast.warn("Tidak ada data yang diubah", {position: "top-center"}); 
+                                    toast.warn(data.message, {position: "top-center"}); 
                                 })
                                API.PostFoto(values.foto, values.foto.name).then(res => {
                                     //console.log('img_ok')
-                                    toast.success("Gambar berhasil disimpan", {position: "top-center"}); 
+                                    var data = res.data;
+                                    toast.success(data.message, {position: "top-center"}); 
                                })
                                 
                                 setTimeout(() => {

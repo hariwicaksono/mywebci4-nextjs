@@ -20,8 +20,9 @@ class Index extends Component{
     }
     componentDidMount = () => {
           API.GetBlog().then(res => {
+            var data = res.data
             setTimeout(() => this.setState({
-                Posts: res.data,
+                Posts: data.data,
                 loading: false
             }), 100);
         })

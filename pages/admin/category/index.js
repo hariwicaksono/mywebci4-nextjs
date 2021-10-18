@@ -36,14 +36,15 @@ class Category extends Component {
 
     componentDidMount = () => {
         API.GetCategory().then(res => {
-          if (res.data.length > 0) {
+          var data = res.data;
+          if (data.length > 0) {
             setTimeout(() => this.setState({
-                Category: res.data,
+                Category: data.data,
                 loading: false
             }), 100);
           } else {
             this.setState({
-                error: "No Data Found",
+                error: data.message,
                 loading: false
             })
         }

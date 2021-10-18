@@ -84,7 +84,7 @@ class MyProfile extends Component {
 
                                             }).catch(err => {
                                                 console.log(err.response)
-                                                toast.warn("Tidak ada data yang diubah", { position: "top-center" });
+                                                toast.warn(data.message, { position: "top-center" });
                                             })
 
                                             setTimeout(() => {

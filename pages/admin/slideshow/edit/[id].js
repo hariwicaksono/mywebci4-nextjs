@@ -13,7 +13,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 const validationSchema = yup.object({
-  text_slide: yup.string().required()
+  text_slide: yup.string()
 }); 
 
 class Edit extends Component {
@@ -38,11 +38,12 @@ static async getInitialProps ({ query }) {
   componentDidMount = () => {
     const id = this.props.id
         API.GetSlideshowId(id).then(res=>{
-          console.log(res)
+          //console.log(res)
+          var data = res.data;
           setTimeout(() => this.setState({
-                id: res.data[0].id,
-                image: res.data[0].img_slide,
-                text_slide : res.data[0].text_slide,
+                id: data.data[0].id,
+                image: data.data[0].img_slide,
+                text_slide : data.data[0].text_slide,
                 loading: false
             }), 100);
         })
@@ -82,18 +83,19 @@ static async getInitialProps ({ query }) {
                                 
                                     API.PutSlideshow(values).then(res=>{
                                       //console.log(res)
-                                      if (res.status == '200' ) {
-                                        toast.success("Data berhasil disimpan", {position: "top-center"}); 
+                                      var data = res.data;
+                                      if (data.status == true ) {
+                                        toast.success(data.message, {position: "top-center"}); 
                                         //setTimeout(() => { 
                                           //Router.reload();
                                       //}, 4000);
                                       } else {
-                                        toast.warn("Gagal, periksa kembali", {position: "top-center"}); 
+                                        toast.warn(data.message, {position: "top-center"}); 
                                     }
                                        
                                   }).catch(err => {
                                       console.log(err.response)
-                                      toast.warn("Tidak ada data yang diubah", {position: "top-center"}); 
+                                      toast.warn(data.message, {position: "top-center"}); 
                                   })
                                 
                                 setTimeout(() => {
