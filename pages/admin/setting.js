@@ -67,9 +67,7 @@ class Setting extends Component {
   };
 
   reloadData = () => {
-    setTimeout(() => {
       this.componentDidMount();
-    }, 1000);
   };
 
   render() {

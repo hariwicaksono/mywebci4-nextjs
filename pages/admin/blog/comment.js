@@ -52,25 +52,14 @@ class Comment extends Component {
     API.GetComment()
       .then((res) => {
         var data = res.data;
-        if (data.length > 0) {
-          setTimeout(
-            () =>
-              this.setState({
-                Comment: data.data,
-                loading: false,
-              }),
-            100
-          );
-        } else {
-          setTimeout(
-            () =>
-              this.setState({
-                error: data.message,
-                loading: false,
-              }),
-            100
-          );
-        }
+        setTimeout(
+          () =>
+            this.setState({
+              Comment: data.data,
+              loading: false,
+            }),
+          100
+        );
       })
       .catch((err) => {
         console.log(err.response);
@@ -78,9 +67,7 @@ class Comment extends Component {
   };
 
   reloadData = () => {
-    setTimeout(() => {
-      this.componentDidMount();
-    }, 1000);
+    this.componentDidMount();
   };
 
   render() {
@@ -140,7 +127,7 @@ class Comment extends Component {
                   <Form.Group>
                     <div className="form-check form-switch">
                       <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="active" value={values.active} defaultChecked={row.active} onChange={handleChange} onBlur={handleBlur} checked={values.active} />
-                      <label className="form-check-label" for="flexSwitchCheckDefault">
+                      <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
                         Aktifkan?
                       </label>
                     </div>
